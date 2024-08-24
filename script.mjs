@@ -93,7 +93,8 @@ export async function handleSubmit() {
     // Reveal cards container and shift form to the left
     cardsContainer.classList.remove('hidden');
     cardsContainer.classList.add('visible');
-    formContainer.style.maxWidth = '50%';
+    formContainer.classList.add('hidden');
+    // formContainer.style.maxWidth = '50%';
 }
 
 // Example custom function that returns a list of dictionaries
