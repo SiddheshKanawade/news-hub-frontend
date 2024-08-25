@@ -1,5 +1,7 @@
 import { getAggregatedNews } from './utils.mjs';
 
+const screenThreshold = 768;
+
 export function showKeywordInput() {
     document.getElementById('keyword-input-container').style.display = 'block';
     document.getElementById('keyword-input').focus();
@@ -93,8 +95,12 @@ export async function handleSubmit() {
     // Reveal cards container and shift form to the left
     cardsContainer.classList.remove('hidden');
     cardsContainer.classList.add('visible');
-    formContainer.classList.add('hidden');
-    // formContainer.style.maxWidth = '50%';
+
+    if (window.matchMedia(`(max-width: ${screenThreshold}px)`).matches) {
+        formContainer.classList.add('hidden');
+    } else {
+        formContainer.style.maxWidth = '50%';
+    }
 }
 
 // Example custom function that returns a list of dictionaries
