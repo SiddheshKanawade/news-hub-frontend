@@ -8,7 +8,7 @@ export function showKeywordInput() {
 }
 
 export function addKeyword(event) {
-    if (event.keyCode === 13 || event.keyCode === 16 || event.key === 'Next' || event.key === 'Done') {
+    if (event.key === 'Enter') {
         const keywordInput = document.getElementById('keyword-input');
         const keyword = keywordInput.value.trim();
         if (keyword) {
@@ -23,6 +23,7 @@ export function addKeyword(event) {
             keywordInput.value = '';
             document.getElementById('keyword-input-container').style.display = 'none';
         }
+        event.preventDefault();  // Prevent default behavior like form submission
     }
 }
 

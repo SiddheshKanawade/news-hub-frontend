@@ -20,7 +20,7 @@
                 <p>Add the relevant keywords. They'll appear in your keywords section.</p>
                 <button class="add-keyword-btn" onclick="showKeywordInput()">+ Add keyword</button>
                 <div id="keyword-input-container" style="display: none;">
-                    <input type="text" id="keyword-input" placeholder="Enter a keyword" onkeypress="addKeyword(event)">
+                    <input type="text" id="keyword-input" placeholder="Enter a keyword" onkeydown="addKeyword(event)">
                 </div>
                 <div class="keyword-list" id="keyword-list">
                     <!-- Prepopulate with initial keywords -->
