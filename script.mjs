@@ -8,7 +8,7 @@ export function showKeywordInput() {
 }
 
 export function addKeyword(event) {
-    if (event.keyCode === 13 || event.keyCode === 59 || event.key === 'Next' || event.key === 'Done') {
+    if (event.keyCode === 13 || event.keyCode === 16 || event.key === 'Next' || event.key === 'Done') {
         const keywordInput = document.getElementById('keyword-input');
         const keyword = keywordInput.value.trim();
         if (keyword) {
