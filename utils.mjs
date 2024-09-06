@@ -1,4 +1,4 @@
-async function getAggregatedNews(apiURL, keyWords) {
+async function getAggregatedNews(apiURL, keyWords, selectedSources) {
     try {
         // Make the POST request
         let response = await fetch(apiURL, {
@@ -7,7 +7,10 @@ async function getAggregatedNews(apiURL, keyWords) {
                 'accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(keyWords)
+            body: JSON.stringify({
+                "keyWords": keyWords,
+                "sources": selectedSources
+            })
         });
 
         if (!response.ok) {
