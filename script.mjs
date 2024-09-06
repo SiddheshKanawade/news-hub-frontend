@@ -165,6 +165,7 @@ async function renderCards(data) {
         card.innerHTML = `
             <h4>${item.title}</h4>
             <p>${item.description}</p>
+            <p>Source: ${item.source.name}</p>
             <p>Published at: ${item.publishedAt}<p>
             <a href="${item.url}" target="_blank">Read More</a>
         `;
