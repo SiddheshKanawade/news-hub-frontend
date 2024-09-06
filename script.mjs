@@ -1,6 +1,16 @@
 import { getAggregatedNews } from './utils.mjs';
 
 const screenThreshold = 768;
+const baseUrl = 'https://interested-cyndia-siddheshorg-cfa870e6.koyeb.app';
+
+// Initialize the Choices.js instance
+const choices = new Choices('#sources', {
+    delimiter: ',',
+    editItems: true,
+    removeItemButton: true,
+    placeholderValue: 'Select sources...',
+    searchEnabled: true,  // Enables the search functionality
+});
 
 export function showKeywordInput() {
     document.getElementById('keyword-input-container').style.display = 'block';
@@ -56,6 +66,9 @@ export async function handleSubmit() {
         return;
     }
 
+    // Get Sources
+    const selectedSources = choices.getValue(true);
+
     let endPoint = document.getElementById('endpoint').value;
     let language = document.getElementById('language').value;
     let threshold = document.getElementById('threshold').value;
@@ -75,6 +88,7 @@ export async function handleSubmit() {
         startDateFormatted,
         endDateFormatted,
         keyWords,
+        selectedSources,
         endPoint,
         language,
         threshold,
@@ -107,15 +121,38 @@ export async function handleSubmit() {
 // Example custom function that returns a list of dictionaries
 async function customFunction(formData) {
     // Don't expose the base URL in the frontend
-    const baseUrl = 'https://interested-cyndia-siddheshorg-cfa870e6.koyeb.app/news/';
     const formattedStartDate = formData.startDateFormatted.toISOString().split('T')[0];
     const formattedEndDate = formData.endDateFormatted.toISOString().split('T')[0];
-    const apiURL = `${baseUrl}?startDate=${formattedStartDate}&endDate=${formattedEndDate}&endPoint=${formData.endPoint}&language=${formData.language}&threshold=${formData.threshold}&page=${formData.page}&perPage=${formData.perPage}`;
+    const apiURL = `${baseUrl}/news/?startDate=${formattedStartDate}&endDate=${formattedEndDate}&endPoint=${formData.endPoint}&language=${formData.language}&threshold=${formData.threshold}&page=${formData.page}&perPage=${formData.perPage}`;
     // Example data returned (simulate your function's return)
     console.log('Calling API:', apiURL);
 
-    const aggregatedNews = await getAggregatedNews(apiURL, formData.keyWords);
+    const aggregatedNews = await getAggregatedNews(apiURL, formData.keyWords, formData.selectedSources);
     return aggregatedNews;
+}
+
+// Fetch sources from backend and set choices as predefined tags
+async function fetchSources() {
+    try {
+        const apiURL = `${baseUrl}/sources/`;
+        let response = await fetch(apiURL, {
+            method: 'GET',
+            headers: {
+                'accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        });
+        const sources = await response.json();
+
+        // Populate Choices.js with fetched options
+        choices.setChoices(sources['results'].map(source => ({
+            value: source.id,
+            label: source.name
+        })), 'value', 'label', true);
+
+    } catch (error) {
+        console.error('Error fetching sources:', error);
+    }
 }
 
 // Function to render the cards based on response data
@@ -134,6 +171,9 @@ async function renderCards(data) {
         cardsContainer.appendChild(card);
     });
 }
+
+// Fetch and populate sources on page load
+fetchSources();
 
 
 // the module, mjs are not automatically loaded in the browser.

@@ -158,6 +158,24 @@ h5 {
     background-color: #218838;
 }
 
+.choices {
+    width: 100%;
+    /* max-width: 400px; */
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+.choices__inner {
+    border-radius: 5px;
+    border: 1px solid #007bff;
+    padding: 5px;
+}
+
+.choices__list--multiple .choices__item {
+    background-color: #007bff;
+    color: white;
+}
+
 /* Responsive Layout for Smaller Screens */
 @media (max-width: 768px) {
     .content-wrapper {
