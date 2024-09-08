@@ -125,7 +125,6 @@ async function customFunction(formData) {
     const formattedEndDate = formData.endDateFormatted.toISOString().split('T')[0];
     const apiURL = `${baseUrl}/news/?startDate=${formattedStartDate}&endDate=${formattedEndDate}&endPoint=${formData.endPoint}&language=${formData.language}&threshold=${formData.threshold}&page=${formData.page}&perPage=${formData.perPage}`;
     // Example data returned (simulate your function's return)
-    console.log('Calling API:', apiURL);
 
     const aggregatedNews = await getAggregatedNews(apiURL, formData.keyWords, formData.selectedSources);
     return aggregatedNews;
