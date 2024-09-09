@@ -31,7 +31,7 @@ async function getAggregatedNews(apiURL, keyWords, selectedSources) {
 
 async function getLiveNews() {
     const selectedSources = ['bloomberg', 'indiatimes', 'the-economic-times', 'the-hindu'];
-    const categories = ['business', 'technology'];
+    const categories = ['general', 'business'];
     try {
         const apiURL = `${baseUrl}/news/live`;
         let response = await fetch(apiURL, {
