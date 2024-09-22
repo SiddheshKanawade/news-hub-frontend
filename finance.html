@@ -9,17 +9,40 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./finance.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <!-- Navbar will be loaded here -->
-    <div id="navbar-container"></div>
-    <div class="container">
-        <h1>Finance News within last 24 hours</h1>
-
-        <!-- Container for the cards -->
-        <div id="card-container" class="card-container">
-            <!-- Cards will be dynamically inserted here -->
+    <div>
+        <!-- Navbar will be loaded here -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="#">News Hub</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="finance.html">Finance News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="crpto.html">Track Crypto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <!-- Container for the cards -->
+            <div id="card-container" class="card-container">
+                <!-- Cards will be dynamically inserted here -->
+            </div>
         </div>
     </div>
 
