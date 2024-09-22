@@ -30,7 +30,7 @@ async function getAggregatedNews(apiURL, keyWords, selectedSources) {
 }
 
 async function getLiveNews() {
-    const selectedSources = ['bloomberg', 'indiatimes', 'the-economic-times', 'the-hindu'];
+    const selectedSources = ['bloomberg', 'indiatimes', 'the-economic-times', 'businesstoday', 'reuters'];
     const categories = ['general', 'business'];
     try {
         const apiURL = `${baseUrl}/news/live`;
@@ -51,7 +51,36 @@ async function getLiveNews() {
             return [];
         }
         let data = await response.json();
-        return data['results'];
+
+        // Call Hindu, if calling with previous sources, then it returns less data for bloomberg and others as the data is caped at 100
+        let response_second = await fetch(apiURL, {
+            method: 'POST',
+            headers: {
+                'accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "sources": ['the-hindu'],
+                "categories": ['business']
+            })
+        });
+
+        console.log(data);
+
+        let data_second = {};
+
+        if (response_second.ok) {
+            data_second = await response_second.json();
+            let updatedData = data['results'].concat(data_second['results']);
+            // Sort updatedData by publishedAt from latest to oldest
+            updatedData.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+            console.log(updatedData);
+            return updatedData;
+        } else {
+            return data['results'];
+        }
+
+
 
 
     } catch (error) {
