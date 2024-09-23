@@ -9,3 +9,10 @@
     width: 22rem;
     margin: 2px;
 }
+
+
+@media (max-width: 768px) {
+    .card {
+        width: 15rem;
+    }
+}
