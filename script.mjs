@@ -1,4 +1,4 @@
-import { getAggregatedNews } from './utils.mjs';
+import { getAggregatedNews } from './utils/helper.mjs';
 
 const screenThreshold = 768;
 const baseUrl = 'https://interested-cyndia-siddheshorg-cfa870e6.koyeb.app';
@@ -132,6 +132,7 @@ async function customFunction(formData) {
 
 // Fetch sources from backend and set choices as predefined tags
 async function fetchSources() {
+    console.log('Fetching Sources');
     try {
         const apiURL = `${baseUrl}/sources/`;
         let response = await fetch(apiURL, {

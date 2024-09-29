@@ -1,5 +1,5 @@
 // Your function that returns a list of items
-import { getLiveNews, timeDifference } from './utils.mjs';
+import { getLiveNews, timeDifference } from './utils/helper.mjs';
 
 
 
@@ -29,10 +29,10 @@ async function displayList() {
 
 // Call the displayList function when the page loads
 window.onload = displayList;
-// Load the navbar dynamically
-fetch('navbar.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('navbar-container').innerHTML = data;
-    })
-    .catch(error => console.error('Error loading navbar:', error));
+// // Load the navbar dynamically
+// fetch('navbar.html')
+//     .then(response => response.text())
+//     .then(data => {
+//         document.getElementById('navbar-container').innerHTML = data;
+//     })
+//     .catch(error => console.error('Error loading navbar:', error));

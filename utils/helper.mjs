@@ -32,6 +32,7 @@ async function getAggregatedNews(apiURL, keyWords, selectedSources) {
 async function getLiveNews() {
     const selectedSources = ['bloomberg', 'indiatimes', 'the-economic-times', 'businesstoday', 'reuters'];
     const categories = ['general', 'business'];
+    console.log('Fetching Live News');
     try {
         const apiURL = `${baseUrl}/news/live`;
         let response = await fetch(apiURL, {
@@ -88,47 +89,6 @@ async function getLiveNews() {
     }
 }
 
-
-async function getCryptoNews(formData) {
-    const today = new Date();
-    const thirtyDaysAgo = new Date(today);
-
-    // Subtract 30 days
-    thirtyDaysAgo.setDate(today.getDate() - 30);
-
-    // Format the dates
-    const formattedStartDate = thirtyDaysAgo.toISOString().split('T')[0];
-    const formattedEndDate = today.toISOString().split('T')[0];
-
-    const apiURL = `${baseUrl}/news/live?startDate=${formattedStartDate}&endDate=${formattedEndDate}`;
-
-    try {
-        let response = await fetch(apiURL, {
-            method: 'POST',
-            headers: {
-                'accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "keyWords": [formData.currency],
-                "categories": formData.selectedCategories
-            })
-        });
-
-        if (!response.ok) {
-            console.log(`HTTP error! status: ${response.status}`);
-            return [];
-        }
-        let data = await response.json();
-        return data['results'];
-
-
-    } catch (error) {
-        console.error('Error fetching Live News:', error);
-    }
-}
-
-
 // Function to calculate time difference
 function timeDifference(publishedAt) {
     const now = new Date();
@@ -151,4 +111,4 @@ function timeDifference(publishedAt) {
     }
 }
 
-export { getAggregatedNews, getLiveNews, getCryptoNews, timeDifference };
+export { getAggregatedNews, getLiveNews, timeDifference };
