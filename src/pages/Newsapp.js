@@ -4,7 +4,7 @@ import Navbar from '../Components/Navbar';
 import getLiveNews from '../utils/ticker'
 
 const Newsapp = () => {
-    const [category, setCategory] = useState("business");
+    const [category, setCategory] = useState("general");
     const [newsData, setNewsData] = useState(null)
     const API_KEY = "9c3ed8ee95884dec979460a60f96675b";
 
