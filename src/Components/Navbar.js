@@ -30,7 +30,7 @@ const Navbar = () => {
             </ul>
             {/* Search bar */}
             <div className='searchBar'>
-                <input type='text' placeholder='Search News' value="Define" onChange={""} />
+                <input type='text' placeholder='Search News' value="" onChange={""} />
                 <button>Search</button>
             </div>
         </nav>
