@@ -1,0 +1,99 @@
+/* Container for the entire form */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    /* Space between items */
+    margin-bottom: 20px;
+    width: 100%;
+    /* Ensure the container takes full width */
+}
+
+/* Styling for each input section (Ticker and Categories) */
+.tickerSelect,
+.tickerCategory {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    padding: 10px;
+    width: 30%;
+    /* Set consistent width */
+}
+
+/* Styling for the label */
+.tickerSelect label,
+.tickerCategory label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+/* Styling for the select inputs */
+.search-container select {
+    width: 100%;
+    /* Full width for each select */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Styling for the submit button */
+.submitButton {
+    padding: 12px 24px;
+    background-color: rgb(255, 108, 108);
+    /* Set button to red */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.submitButton:hover {
+    background-color: darkred;
+    /* Darker red on hover */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .search-container {
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        /* Reduce gap for mobile */
+    }
+
+    .tickerSelect,
+    .tickerCategory {
+        width: 90%;
+    }
+
+    .submitButton {
+        width: 85%;
+        /* Full width button on smaller screens */
+    }
+}
+
+.choices {
+    width: 100%;
+}
+
+/* Choices.js customization: hide options until typing */
+.choices__list--dropdown {
+    display: none;
+    /* Hide dropdown options by default */
+}
+
+.choices.is-open .choices__list--dropdown {
+    display: block;
+    /* Show options when typing or clicking the input */
+}
+
+.choices__list--multiple .choices__item {
+    background-color: #fc4141;
+    color: white;
+}
