@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../Components/Card'
-import Navbar from '../Components/Navbar';
-import getLiveNews from '../utils/ticker'
+import { getLiveNews } from '../utils/get_news'
 
 const Newsapp = () => {
     const [category, setCategory] = useState("general");
-    const [newsData, setNewsData] = useState(null)
-    const API_KEY = "9c3ed8ee95884dec979460a60f96675b";
+    const [newsData, setNewsData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const getData = async (category) => {
         const dt = await getLiveNews(category);
@@ -14,7 +13,9 @@ const Newsapp = () => {
     }
 
     useEffect(() => {
+        setIsLoading(true);
         getData(category);
+        setIsLoading(false);
     }, [])
 
     const handleInput = (e) => {
@@ -43,7 +44,7 @@ const Newsapp = () => {
             </div>
 
             <div>
-                {newsData ? <Card data={newsData} /> : null}
+                {newsData ? <Card data={newsData} isLoading={isLoading} /> : null}
 
             </div>
         </div>

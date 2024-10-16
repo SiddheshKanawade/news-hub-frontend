@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import './styles/ticker.css';
 import Newsapp from './pages/Newsapp';
 import Feed from './pages/Feed';
 import Ticker from './pages/Ticker';
@@ -11,9 +12,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
-  useNavigate,
-  Outlet,
 } from "react-router-dom";
 
 

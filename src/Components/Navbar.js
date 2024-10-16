@@ -15,19 +15,21 @@ const Navbar = () => {
                 </a>
             </div>
 
-            {/* Hamburger icon */}
-            <div className='hamburger' onClick={toggleMenu}>
-                <div className={`line ${isOpen ? 'open' : ''}`}></div>
-                <div className={`line ${isOpen ? 'open' : ''}`}></div>
-                <div className={`line ${isOpen ? 'open' : ''}`}></div>
-            </div>
+            <div className='hamburgerWrapper'>
+                {/* Hamburger icon */}
+                <div className='hamburger' onClick={toggleMenu}>
+                    <div className={`line ${isOpen ? 'open' : ''}`}></div>
+                    <div className={`line ${isOpen ? 'open' : ''}`}></div>
+                    <div className={`line ${isOpen ? 'open' : ''}`}></div>
+                </div>
 
-            {/* Navigation items */}
-            <ul className={`navItems ${isOpen ? 'show' : ''}`}>
-                <li><a href="/feed" className='navItem'>Your Feed</a></li>
-                <li><a href="/ticker" className='navItem'>Tikr News</a></li>
-                <li><a href="/keysearch" className='navItem'>Keyword Search</a></li>
-            </ul>
+                {/* Navigation items */}
+                <ul className={`navItems ${isOpen ? 'show' : ''}`}>
+                    <li><a href="/feed" className='navItem'>Your Feed</a></li>
+                    <li><a href="/ticker" className='navItem'>Tikr News</a></li>
+                    <li><a href="/keysearch" className='navItem'>Keyword Search</a></li>
+                </ul>
+            </div>
             {/* Search bar */}
             <div className='searchBar'>
                 <input type='text' placeholder='Search News' value="" onChange={""} />
