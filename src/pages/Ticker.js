@@ -1,7 +1,7 @@
 import Choices from "choices.js";
 import React, { useEffect, useState, useRef } from 'react'
 import { loadTickersFromCSV } from '../utils/helper'
-import TickerCategory from "../Components/Category";
+import TickerCategory from "../Components/TickerCategory";
 import { getTickerNews } from "../utils/get_news";
 import Card from "../Components/Card";
 

@@ -25,7 +25,7 @@ const Login = () => {
             if (response.status === 200) {
                 const token = response.data.access_token;
                 localStorage.setItem('authToken', token);
-                navigate('/dashboard');
+                navigate('/');
             }
         } catch (err) {
             setError('Login failed. Please check your credentials.');

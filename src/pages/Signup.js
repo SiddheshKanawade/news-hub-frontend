@@ -11,18 +11,26 @@ const Signup = () => {
 
     const handleSignup = async (e) => {
         e.preventDefault();
+        const baseUrl = process.env.REACT_APP_BASEURL;
         try {
-            const response = await axios.post('http://localhost:8000/signup', {
+            const response = await axios.post(`${baseUrl}/user/register`, {
                 username,
                 password,
                 email
             });
+
+            console.log(response);
 
             if (response.status === 201) {
                 navigate('/login');
             }
         } catch (err) {
             setError('Signup failed. Please try again.');
+            if (err.status === 409) {
+                setError('User already exists. Please login.');
+                alert('User already exists. Please login.');
+                navigate('/login');
+            }
         }
     };
 

@@ -49,8 +49,8 @@ function getDateRange() {
 
     thirtyDaysAgo.setDate(today.getDate() - 60);
 
-    const formattedStartDate = thirtyDaysAgo.toISOString().split('T')[0];
-    const formattedEndDate = today.toISOString().split('T')[0];
+    const formattedStartDate = thirtyDaysAgo.toISOString();
+    const formattedEndDate = today.toISOString();
 
     return { formattedStartDate, formattedEndDate };
 }
