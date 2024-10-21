@@ -8,6 +8,7 @@ import Navbar from './Components/Navbar';
 import Error from './Components/Error';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import FeedSource from './pages/FeedSource';
 import ProtectedRoute from './Components/ProtectedRoute';
 
 import {
@@ -21,7 +22,7 @@ function AppContent() {
   const location = useLocation();
 
   // Define the paths where the Navbar should be hidden
-  const hideNavbarRoutes = ['/login', '/signup'];
+  const hideNavbarRoutes = ['/login', '/signup', '/feed-sources'];
 
   // Check if current path is one of the paths where Navbar should be hidden
   const hideNavbar = hideNavbarRoutes.includes(location.pathname);
@@ -35,8 +36,8 @@ function AppContent() {
         {/* Public routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/feed-sources" element={<FeedSource />} />
 
-        {/* Protected routes */}
         <Route path="/" element={<Newsapp />} />
         <Route path="/feed" element={<ProtectedRoute><Feed /></ProtectedRoute>} />
         <Route path="/ticker" element={<Ticker />} />

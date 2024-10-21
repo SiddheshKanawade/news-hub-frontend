@@ -25,6 +25,7 @@ const Login = () => {
             if (response.status === 200) {
                 const token = response.data.access_token;
                 localStorage.setItem('authToken', token);
+                console.log('Login successful');
                 navigate('/');
             }
         } catch (err) {

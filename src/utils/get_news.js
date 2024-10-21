@@ -64,9 +64,10 @@ async function getTickerNews(ticker, selectedCategories) {
     }
 }
 
-async function getFeedNews(token) {
+async function getFeedNews(token, navigate) {
     const baseUrl = process.env.REACT_APP_BASEURL;
     try {
+        console.log('Fetching Feed News');
         const response = await axios.post(`${baseUrl}/user/feed`, {}, {
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -76,11 +77,19 @@ async function getFeedNews(token) {
 
         return response.data['results'];
     } catch (resp) {
-        console.error('Error fetching Feed News:', resp.status);
         if (resp.status === 401) {
             localStorage.removeItem('authToken');
-            alert('You need to login first');
-            return <Navigate to="/login" />;
+            alert('Session timedout. Login again to continue');
+            navigate('/login');
+        } else if (resp.status === 400) {
+            console.error('Bad request exception:', resp);
+            alert('Please add feed sources to continue');
+            navigate('/feed-sources');
+            return (
+                <div>
+                    <Error />
+                </div>
+            );
         }
 
         console.error('Error fetching Feed News:', resp);

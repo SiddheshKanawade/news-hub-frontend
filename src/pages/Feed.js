@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import { getFeedNews } from '../utils/get_news';
 import Card from '../Components/Card';
@@ -7,10 +7,11 @@ export default function Feed() {
     const [newsData, setNewsData] = useState(null);
     const [authToken, setAuthToken] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
-    //  Token may not be valid
     const getData = async (token) => {
-        const dt = await getFeedNews(token);
+        setNewsData(null);
+        const dt = await getFeedNews(token, navigate);
         setNewsData(dt);
     }
 
@@ -20,17 +21,15 @@ export default function Feed() {
 
         if (!token) {
             alert('You need to login first');
-            return <Navigate to="/login" />;
+            navigate('/login');  // Use navigate to redirect to login page
+            return;
         }
 
         setAuthToken(token);
         getData(token);
         setIsLoading(false);
-    }, [])
+    }, [navigate])
 
-    // In case of invalid token, send back to login page
-
-    // Token validation would be done in the backend and based on error code, we send back
     return (
         <div>
             {newsData ? <Card data={newsData} isLoading={isLoading} /> : null}
