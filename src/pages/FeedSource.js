@@ -11,6 +11,8 @@ export default function FeedSource() {
         { display: 'India Times', value: 'indiatimes' },
         { display: 'The Economic Times', value: 'the-economic-times' },
         { display: 'Business Today', value: 'business-today' },
+        { display: 'Financial Times', value: 'financialtimes' },
+        { display: 'The New York Times', value: 'nytimes' },
         { display: 'Reuters', value: 'reuters' },
         { display: 'The Hindu', value: 'the-hindu' },
         { display: 'BBC', value: 'bbc' },
@@ -45,24 +47,29 @@ export default function FeedSource() {
     };
 
     return (
-        <div>
-            <h2>Define Your Feed</h2>
-            <form>
-                {sources.map((source, index) => (
-                    <div key={index}>
-                        <label>
-                            <input
-                                type="checkbox"
-                                value={source.value} // Use the 'value' field as the selected value
-                                onChange={handleSourceChange}
-                            />
-                            {source.display} {/* Display the human-readable name */}
-                        </label>
+        <div className='auth-wrapper'>
+            <div className='auth-container'>
+                <form>
+                    <h1>Define Your Feed</h1>
+                    <div className='feeds'>
+                        {sources.map((source, index) => (
+                            <div key={index}>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        value={source.value} // Use the 'value' field as the selected value
+                                        onChange={handleSourceChange}
+                                    />
+                                    {source.display} {/* Display the human-readable name */}
+                                </label>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </form>
+                    <button className='btn' type="button" onClick={handleSubmit}>Submit</button>
+                </form>
 
-            <button type="button" onClick={handleSubmit}>Submit</button>
+
+            </div>
         </div>
     );
 }

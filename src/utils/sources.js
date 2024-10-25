@@ -7,9 +7,6 @@ async function addFeedSources(sources, token, navigate) {
 
     try {
         console.log(sources);
-        const bodyParameters = {
-            sources: sources
-        };
         const response = await axios.post(
             `${baseUrl}/user/feed-sources`,
             sources,
@@ -29,9 +26,10 @@ async function addFeedSources(sources, token, navigate) {
 
     } catch (error) {
         console.error('Error adding Feed Sources:', error);
-        if (error.response) {
+        if (error.response.status === 401) {
             console.log(`HTTP error! status: ${error.response.status}`);
-            navigate('/error');
+            alert('Session timedout. Login again to continue');
+            navigate('/login');
         } else if (error.request) {
             console.error('No response received:', error.request);
             navigate('/error');

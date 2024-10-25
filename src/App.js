@@ -1,5 +1,7 @@
 import './App.css';
 import './styles/ticker.css';
+import './styles/auth.css'
+
 import Newsapp from './pages/Newsapp';
 import Feed from './pages/Feed';
 import Ticker from './pages/Ticker';

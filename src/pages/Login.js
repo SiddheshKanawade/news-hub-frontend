@@ -35,22 +35,25 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <form onSubmit={handleLogin}>
-                <label>
-                    Username:
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    Password:
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </label>
-                <br />
-                <button type="submit">Login</button>
-            </form>
+        <div className='auth-wrapper'>
+            <div className='auth-container'>
+
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <form onSubmit={handleLogin}>
+                    <h1>Login</h1>
+                    <p className='custom'>Welcome to the PRaZo! Please log in to access custom feed, made just for you.</p>
+                    <label>
+                        Email:
+                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    </label>
+
+                    <label>
+                        Password:
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </label>
+                    <button className='btn' type="submit">Login</button>
+                </form>
+            </div>
         </div>
     );
 };

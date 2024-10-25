@@ -35,27 +35,26 @@ const Signup = () => {
     };
 
     return (
-        <div>
-            <h2>Signup</h2>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <form onSubmit={handleSignup}>
-                <label>
-                    Username:
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    Email:
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </label>
-                <br />
-                <label>
-                    Password:
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </label>
-                <br />
-                <button type="submit">Signup</button>
-            </form>
+        <div className='auth-wrapper'>
+            <div className='auth-container'>
+                <form onSubmit={handleSignup}>
+                    <h1>Signup</h1>
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    <label>
+                        Username:
+                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    </label>
+                    <label>
+                        Email:
+                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    </label>
+                    <label>
+                        Password:
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </label>
+                    <button className='btn' type="submit">Signup</button>
+                </form>
+            </div>
         </div>
     );
 };
