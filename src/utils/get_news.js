@@ -1,4 +1,7 @@
 import { getDateRange } from './helper';
+import axios from 'axios';
+import { Navigate } from 'react-router-dom';
+import Error from '../Components/InternalServerError';
 
 async function getLiveNews(category) {
     const baseUrl = process.env.REACT_APP_BASEURL;
@@ -33,7 +36,7 @@ async function getLiveNews(category) {
 
 async function getTickerNews(ticker, selectedCategories) {
     const baseUrl = process.env.REACT_APP_BASEURL;
-    const { formattedStartDate, formattedEndDate } = getDateRange();
+    const { formattedStartDate, formattedEndDate } = getDateRange(); // NEVER USED!!!
 
     try {
         let response = await fetch(`${baseUrl}/news/ticker`, {
@@ -44,7 +47,7 @@ async function getTickerNews(ticker, selectedCategories) {
             },
             body: JSON.stringify({
                 "keyWords": [ticker],
-                "categories": selectedCategories
+                "categories": selectedCategories,
             })
         });
 
@@ -61,4 +64,44 @@ async function getTickerNews(ticker, selectedCategories) {
     }
 }
 
-export { getLiveNews, getTickerNews };
+async function getFeedNews(token, navigate) {
+    const baseUrl = process.env.REACT_APP_BASEURL;
+    try {
+        console.log('Fetching Feed News');
+        const response = await axios.post(`${baseUrl}/user/feed`, {}, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return response.data['results'];
+    } catch (resp) {
+        if (resp.status === 401) {
+            localStorage.removeItem('authToken');
+            alert('Session timedout. Login again to continue');
+            navigate('/login');
+        } else if (resp.status === 400) {
+            console.error('Bad request exception:', resp);
+            alert('Please add feed sources to continue');
+            navigate('/feed-sources');
+            return (
+                <div>
+                    <Error />
+                </div>
+            );
+        }
+
+        console.error('Error fetching Feed News:', resp);
+
+        return (
+            <div>
+                <Error />
+            </div>
+        );
+
+
+    }
+}
+
+export { getLiveNews, getTickerNews, getFeedNews };

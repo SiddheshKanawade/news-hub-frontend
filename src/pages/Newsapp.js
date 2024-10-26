@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../Components/Card'
 import { getLiveNews } from '../utils/get_news'
+import GeneralCategory from '../Components/GeneralCategory'
 
 const Newsapp = () => {
     const [category, setCategory] = useState("general");
@@ -19,30 +20,28 @@ const Newsapp = () => {
     }, [])
 
     const handleInput = (e) => {
+        "To implement search functionality"
         console.log(e.target.value);
         setCategory(e.target.value)
 
     }
-    const userInput = (event) => {
-        setCategory(event.target.value);
-        getData(event.target.value);
+    const handleCategoryChange = (cat) => {
+        setCategory(cat);
     }
+
+    useEffect(() => {
+        setIsLoading(true);
+        getData(category);
+        setIsLoading(false);
+    }, [category])
 
     return (
         <div>
             <div>
                 <p className='head'>All your News in single Feed</p>
             </div>
-            <div className='categoryBtn'>
-                <button onClick={userInput} value="general">General</button>
-                <button onClick={userInput} value="business">Business</button>
-                <button onClick={userInput} value="entertainment">Entertainment</button>
-                <button onClick={userInput} value="health">Health</button>
-                <button onClick={userInput} value="science">Science</button>
-                <button onClick={userInput} value="sports">Sports</button>
-                <button onClick={userInput} value="technology">Technology</button>
-            </div>
 
+            <GeneralCategory onCategoriesChange={handleCategoryChange} />
             <div>
                 {newsData ? <Card data={newsData} isLoading={isLoading} /> : null}
 
