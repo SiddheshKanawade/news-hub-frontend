@@ -30,6 +30,7 @@ const Login = () => {
             }
         } catch (err) {
             setError('Login failed. Please check your credentials.');
+            alert('Login failed. Please signup.');
             navigate('/signup');
         }
     };
