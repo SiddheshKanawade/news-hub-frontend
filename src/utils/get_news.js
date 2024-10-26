@@ -104,4 +104,25 @@ async function getFeedNews(token, navigate) {
     }
 }
 
-export { getLiveNews, getTickerNews, getFeedNews };
+async function isLoggedIn(token) {
+    const baseUrl = process.env.REACT_APP_BASEURL;
+    try {
+        const response = await axios.post(`${baseUrl}/user/login`, {}, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.status === 200) {
+            return true
+        } else {
+            return false
+        }
+    } catch (err) {
+        console.error('Error checking login status:', err);
+        return false;
+    }
+}
+
+export { getLiveNews, getTickerNews, getFeedNews, isLoggedIn };

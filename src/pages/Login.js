@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
+import { isLoggedIn } from '../utils/get_news';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -34,6 +36,14 @@ const Login = () => {
             navigate('/signup');
         }
     };
+
+
+    useEffect(() => {
+        if (isLoggedIn(localStorage.getItem('authToken'))) {
+            alert('You are already logged in');
+            navigate('/');
+        }
+    }, []);
 
     return (
         <div className='auth-wrapper'>

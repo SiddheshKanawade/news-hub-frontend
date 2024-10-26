@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: lightblue;
 }
 
 h1 {
@@ -53,7 +54,7 @@ input[type="password"] {
 button.btn {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #ff6c6c;
     color: white;
     border: none;
     border-radius: 4px;
@@ -62,7 +63,7 @@ button.btn {
 }
 
 button.btn:hover {
-    background-color: #45a049;
+    background-color: #ff4343;
 }
 
 /* Add spacing between form elements */
