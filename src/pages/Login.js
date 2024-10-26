@@ -51,7 +51,6 @@ const Login = () => {
 
     useEffect(() => {
         if (isLogged) {
-            alert('You are already logged in');
             navigate('/');
         }
     }, [isLogged]);
