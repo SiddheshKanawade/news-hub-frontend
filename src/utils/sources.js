@@ -3,7 +3,6 @@ import axios from 'axios';
 
 async function addFeedSources(sources, token, navigate) {
     const baseUrl = process.env.REACT_APP_BASEURL;
-    console.log(token);
 
     try {
         console.log(sources);

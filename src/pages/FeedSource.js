@@ -8,27 +8,25 @@ export default function FeedSource() {
 
     const sources = [
         { display: 'Bloomberg', value: 'bloomberg' },
-        { display: 'India Times', value: 'indiatimes' },
         { display: 'The Economic Times', value: 'the-economic-times' },
-        { display: 'Business Today', value: 'business-today' },
+        { display: 'Business Today', value: 'businesstoday' },
         { display: 'Financial Times', value: 'financialtimes' },
+        { display: 'Investing.com | Stock Market Quotes &amp; Financial News', value: 'investing' },
         { display: 'The New York Times', value: 'nytimes' },
         { display: 'Reuters', value: 'reuters' },
         { display: 'The Hindu', value: 'the-hindu' },
         { display: 'BBC', value: 'bbc' },
         { display: 'CNBC', value: 'cnbc' },
+        { display: 'Yahoo News', value: 'yahoo' },
         { display: 'Google News', value: 'google-news' },
-        { display: 'Times of India', value: 'times-of-india' },
-        { display: 'The Guardian', value: 'the-guardian' },
-        { display: 'Financial Express', value: 'financial-express' },
+        { display: 'Times of India', value: 'indiatimes' },
+        { display: 'The Guardian', value: 'guardian' },
+        { display: 'Financial Express', value: 'financialexpress' },
         { display: 'NDTV', value: 'ndtv' },
         { display: 'Forbes', value: 'forbes' },
-        { display: 'TechCrunch', value: 'techcrunch' },
         { display: 'CNN', value: 'cnn' },
-        { display: 'Al Jazeera', value: 'al-jazeera' },
-        { display: 'The Wall Street Journal', value: 'the-wall-street-journal' },
-        { display: 'Fox News', value: 'fox-news' },
-        { display: 'USA Today', value: 'usa-today' }
+        { display: 'Al Jazeera', value: 'aljazeera' },
+        { display: 'Fox News', value: 'foxnews' },
     ];
 
     const [selectedSources, setSelectedSources] = useState([]);
