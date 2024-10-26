@@ -9,6 +9,7 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
+    const [isLogged, setIsLogged] = useState(false);
     const navigate = useNavigate();
 
     const handleSignup = async (e) => {
@@ -36,11 +37,21 @@ const Signup = () => {
         }
     };
 
+    const checkLogged = async () => {
+        const status = await isLoggedIn(localStorage.getItem('authToken'));
+        setIsLogged(status);
+        return status;
+    }
+
     useEffect(() => {
-        if (isLoggedIn(localStorage.getItem('authToken'))) {
+        if (isLogged) {
             alert('You are already logged in');
             navigate('/');
         }
+    }, [isLogged]);
+
+    useEffect(() => {
+        checkLogged();
     }, []);
 
     return (

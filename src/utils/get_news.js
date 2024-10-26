@@ -115,6 +115,7 @@ async function isLoggedIn(token) {
         });
 
         if (response.status === 200) {
+            console.log(response);
             return true
         } else {
             return false

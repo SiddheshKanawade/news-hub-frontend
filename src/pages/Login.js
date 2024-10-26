@@ -7,6 +7,7 @@ import { isLoggedIn } from '../utils/get_news';
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isLogged, setIsLogged] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -27,8 +28,8 @@ const Login = () => {
             if (response.status === 200) {
                 const token = response.data.access_token;
                 localStorage.setItem('authToken', token);
+                setIsLogged(true);
                 console.log('Login successful');
-                navigate('/');
             }
         } catch (err) {
             setError('Login failed. Please check your credentials.');
@@ -37,13 +38,23 @@ const Login = () => {
         }
     };
 
+    const checkLogged = async () => {
+        const status = await isLoggedIn(localStorage.getItem('authToken'));
+        setIsLogged(status);
+        return status;
+    }
 
     useEffect(() => {
-        if (isLoggedIn(localStorage.getItem('authToken'))) {
+        checkLogged();
+    }, []);
+
+
+    useEffect(() => {
+        if (isLogged) {
             alert('You are already logged in');
             navigate('/');
         }
-    }, []);
+    }, [isLogged]);
 
     return (
         <div className='auth-wrapper'>
