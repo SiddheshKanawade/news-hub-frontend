@@ -5,7 +5,7 @@ import Error from '../Components/InternalServerError';
 
 async function getLiveNews(category) {
     const baseUrl = process.env.REACT_APP_BASEURL;
-    const selectedSources = ['bloomberg', 'indiatimes', 'the-economic-times', 'businesstoday', 'reuters', 'the-hindu', 'bbc', 'cnbc', 'google-news'];
+    const selectedSources = ['bloomberg', 'indiatimes', 'the-economic-times', 'businesstoday', 'reuters', 'the-hindu', 'nytimes', 'guardian', 'bbc', 'cnbc', 'yahoo', 'google-news'];
     try {
         const apiURL = `${baseUrl}/news/live`;
         console.log(`Fetching Live News for category: ${category}`);
