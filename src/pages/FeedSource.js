@@ -8,24 +8,18 @@ export default function FeedSource() {
 
     const sources = [
         { display: 'Bloomberg', value: 'bloomberg' },
-        { display: 'The Economic Times', value: 'the-economic-times' },
+        { display: 'The Guardian', value: 'guardian' },
         { display: 'Business Today', value: 'businesstoday' },
         { display: 'Financial Times', value: 'financialtimes' },
-        { display: 'Investing.com | Stock Market Quotes &amp; Financial News', value: 'investing' },
         { display: 'The New York Times', value: 'nytimes' },
         { display: 'Reuters', value: 'reuters' },
         { display: 'The Hindu', value: 'the-hindu' },
-        { display: 'BBC', value: 'bbc' },
+        { display: 'BBC Future', value: 'bbc' },
         { display: 'CNBC', value: 'cnbc' },
+        { display: 'Investing.com | Stock Market Quotes & Financial News', value: 'investing' },
         { display: 'Yahoo News', value: 'yahoo' },
         { display: 'Google News', value: 'google-news' },
-        { display: 'Times of India', value: 'indiatimes' },
-        { display: 'The Guardian', value: 'guardian' },
-        { display: 'Financial Express', value: 'financialexpress' },
-        { display: 'NDTV', value: 'ndtv' },
-        { display: 'Forbes', value: 'forbes' },
         { display: 'CNN', value: 'cnn' },
-        { display: 'Al Jazeera', value: 'aljazeera' },
         { display: 'Fox News', value: 'foxnews' },
     ];
 
