@@ -8,17 +8,19 @@
 
 h1 {
     text-align: center;
+    font-size: 2.3em;
     margin-bottom: 20px;
 }
 
 .custom {
     color: #333;
+    font-size: 1em;
     text-align: center;
 }
 
 /* Center the form on the page */
 form {
-    width: 350px;
+    width: 28em;
     margin: 50px;
     padding: 15px 20px 35px 20px;
     border: 1px solid #ddd;
@@ -33,7 +35,7 @@ label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
-    font-size: large;
+    font-size: 1.3em;
     color: #333;
 }
 
@@ -43,6 +45,7 @@ input[type="email"],
 input[type="password"] {
     width: 100%;
     padding: 8px;
+    font-size: large;
     margin-top: 4px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
@@ -58,7 +61,7 @@ button.btn {
     color: white;
     border: none;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 1.3em;
     cursor: pointer;
 }
 
@@ -73,4 +76,23 @@ br {
 
 .feeds {
     padding: 20px;
+}
+
+
+@media (max-width: 768px) {
+    .auth-wrapper {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #add8e6;
+        margin: 0;
+    }
+
+    form {
+        width: 18em;
+        height: auto;
+        margin: auto;
+        /* padding: 20px; */
+    }
 }
