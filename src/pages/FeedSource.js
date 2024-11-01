@@ -8,19 +8,15 @@ export default function FeedSource() {
 
     const sources = [
         { display: 'Bloomberg', value: 'bloomberg' },
-        { display: 'The Guardian', value: 'guardian' },
-        { display: 'Business Today', value: 'businesstoday' },
-        { display: 'Financial Times', value: 'financialtimes' },
-        { display: 'The New York Times', value: 'nytimes' },
-        { display: 'Reuters', value: 'reuters' },
-        { display: 'The Hindu', value: 'the-hindu' },
-        { display: 'BBC Future', value: 'bbc' },
-        { display: 'CNBC', value: 'cnbc' },
-        { display: 'Investing.com | Stock Market Quotes & Financial News', value: 'investing' },
-        { display: 'Yahoo News', value: 'yahoo' },
-        { display: 'Google News', value: 'google-news' },
-        { display: 'CNN', value: 'cnn' },
-        { display: 'Fox News', value: 'foxnews' },
+        { display: 'The Times of India', value: 'The Times of India' },
+        { display: 'Live Mint', value: 'mint' },
+        { display: 'Money Control', value: 'Moneycontrol' },
+        { display: 'The Economic Times', value: 'The Economic Times' },
+        { display: 'Al Jazeera', value: 'Al Jazeera' },
+        { display: 'The Hindu', value: 'The Hindu' },
+        { display: 'AP News', value: 'AP News' },
+        { display: 'The Print', value: 'ThePrint' },
+        { display: 'The Indian Express', value: 'The Indian Express' },
     ];
 
     const [selectedSources, setSelectedSources] = useState([]);
