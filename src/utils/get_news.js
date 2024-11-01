@@ -5,9 +5,9 @@ import Error from '../Components/InternalServerError';
 
 async function getLiveNews(category) {
     const baseUrl = process.env.REACT_APP_BASEURL;
-    const selectedSources = ['bloomberg', 'indiatimes', 'the-economic-times', 'businesstoday', 'reuters', 'the-hindu', 'nytimes', 'guardian', 'bbc', 'cnbc', 'yahoo', 'google-news'];
+    const params = new URLSearchParams({ category: category ? category : 'general' });
     try {
-        const apiURL = `${baseUrl}/news/live`;
+        const apiURL = `${baseUrl}/news/?${params.toString()}`;
         console.log(`Fetching Live News for category: ${category}`);
         let response = await fetch(apiURL, {
             method: 'POST',
@@ -16,8 +16,7 @@ async function getLiveNews(category) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "sources": selectedSources,
-                "categories": category ? [category] : ['business']
+                "category": category ? category : 'general'
             })
         });
 
