@@ -8,6 +8,7 @@ export default function GeneralCategory({ onCategoriesChange }) {
     return (
         <div className='categoryBtn'>
             <button onClick={userInput} value="general">General</button>
+            <button onClick={userInput} value="politics">Politics</button>
             <button onClick={userInput} value="business">Business</button>
             <button onClick={userInput} value="entertainment">Entertainment</button>
             <button onClick={userInput} value="health">Health</button>

@@ -63,16 +63,20 @@ async function getTickerNews(ticker, selectedCategories) {
     }
 }
 
-async function getFeedNews(token, navigate) {
+async function getFeedNews(token, navigate, category) {
     const baseUrl = process.env.REACT_APP_BASEURL;
     try {
         console.log('Fetching Feed News');
-        const response = await axios.post(`${baseUrl}/user/feed`, {}, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        });
+        const response = await axios.post(`${baseUrl}/user/feed`, {},
+            {
+                params: {
+                    category
+                },
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
 
         return response.data['results'];
     } catch (resp) {
