@@ -156,6 +156,7 @@ nav ul {
   justify-content: center;
   flex-wrap: wrap;
   gap: 11px;
+  height: 10 px;
   padding: 3px;
 }
 
@@ -178,6 +179,18 @@ nav ul {
   text-align: center;
   font-weight: 600;
   font-size: 26px;
+}
+
+.spinner {
+  position: fixed;
+  /* Ensures the spinner is positioned relative to the viewport */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Center the element */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

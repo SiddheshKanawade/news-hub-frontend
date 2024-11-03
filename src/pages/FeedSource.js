@@ -7,7 +7,7 @@ export default function FeedSource() {
     const navigate = useNavigate();
 
     const sources = [
-        { display: 'Bloomberg', value: 'bloomberg' },
+        { display: 'Bloomberg Asia', value: 'bloomberg' },
         { display: 'The Times of India', value: 'The Times of India' },
         { display: 'Live Mint', value: 'mint' },
         { display: 'Money Control', value: 'Moneycontrol' },
@@ -15,8 +15,11 @@ export default function FeedSource() {
         { display: 'Al Jazeera', value: 'Al Jazeera' },
         { display: 'The Hindu', value: 'The Hindu' },
         { display: 'AP News', value: 'AP News' },
+        { display: 'Hindustan Times', value: 'Hindustan Times' },
         { display: 'The Print', value: 'ThePrint' },
         { display: 'The Indian Express', value: 'The Indian Express' },
+        { display: 'India Today', value: 'India Today' },
+        { display: 'ESPNcricinfo', value: 'ESPNcricinfo' },
     ];
 
     const [selectedSources, setSelectedSources] = useState([]);
