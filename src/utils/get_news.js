@@ -77,6 +77,7 @@ async function getFeedNews(token, navigate, category) {
                     'Content-Type': 'application/json'
                 }
             });
+        console.log("Feed News received");
 
         return response.data['results'];
     } catch (resp) {
