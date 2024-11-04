@@ -1,7 +1,11 @@
 import { getDateRange } from './helper';
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import { Navigate } from 'react-router-dom';
 import Error from '../Components/InternalServerError';
+
+axiosRetry(axios, { retries: 3, retryDelay: axiosRetry.exponentialDelay });
+
 
 async function getLiveNews(category) {
     const baseUrl = process.env.REACT_APP_BASEURL;
@@ -67,7 +71,7 @@ async function getTickerNews(ticker, selectedCategories) {
 async function getFeedNews(token, navigate, category) {
     const baseUrl = process.env.REACT_APP_BASEURL;
     try {
-        console.log('Fetching Feed News');
+        console.log(`Fetching Feed News for category: ${category}`);
         const response = await axios.post(`${baseUrl}/user/feed`, {},
             {
                 params: {
@@ -76,9 +80,10 @@ async function getFeedNews(token, navigate, category) {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
-                }
+                },
+                timeout: 100000 // 100 seconds
             });
-        console.log("Feed News received");
+        console.log(`Received Feed News for category: ${category}`);
 
         return response.data['results'];
     } catch (resp) {
