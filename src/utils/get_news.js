@@ -25,6 +25,7 @@ async function getLiveNews(category) {
             return [];
         }
         let data = await response.json();
+        console.log(`Received Live News for category: ${category}`);
 
         return data['results'];
 
