@@ -1,5 +1,4 @@
 import React from 'react';
-import timeDifference from '../utils/get_news';
 import LazyLoad from 'react-lazyload';
 import Spinner from '../Components/Spinner'
 

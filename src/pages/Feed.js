@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { getFeedNews } from '../utils/get_news';
 import Card from '../Components/Card';
 import GeneralCategory from '../Components/GeneralCategory';
@@ -11,25 +11,28 @@ export default function Feed() {
     const [authToken, setAuthToken] = useState(null);
     const [category, setCategory] = useState("general");
     const [isLoading, setIsLoading] = useState(false);
+    const cacheRef = useRef({});
     const navigate = useNavigate();
 
-    const getData = useCallback(async (token, category) => {
-        setIsLoading(true);
+    const CACHE_TIMEOUT = 15 * 60 * 1000; // 15 minutes in milliseconds
 
-        // Check if data for this category is already cached in sessionStorage
-        const cachedData = sessionStorage.getItem(`newsData_${category}`);
-        if (cachedData) {
-            setNewsData(JSON.parse(cachedData));
+    const getData = useCallback(async (token, category) => {
+        const currentTime = Date.now();
+
+        // Check if category exists in cache and is within the timeout period
+        if (cacheRef.current[category] && currentTime - cacheRef.current[category].timestamp < CACHE_TIMEOUT) {
+            setNewsData(cacheRef.current[category].data);
             setIsLoading(false);
             return;
         }
 
         // If not cached, fetch from API
+        setIsLoading(true);
         const dt = await getFeedNews(token, navigate, category);
         setNewsData(dt);
 
         // Cache the data in sessionStorage
-        sessionStorage.setItem(`newsData_${category}`, JSON.stringify(dt));
+        cacheRef.current[category] = { data: dt, timestamp: currentTime };
         setIsLoading(false);
     }, [navigate]);
 
@@ -63,7 +66,9 @@ export default function Feed() {
                 <p className='head'>Customised Feed based on Selected Sources!</p>
             </div>
             <GeneralCategory onCategoriesChange={handleCategoryChange} />
-            {newsData ? <Card data={newsData} isLoading={isLoading} /> : <Spinner />}
+            <div>
+                {isLoading ? <Spinner /> : <Card data={newsData} />}
+            </div>
         </div>
     );
 }

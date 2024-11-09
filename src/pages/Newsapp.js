@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Card from '../Components/Card';
 import { getLiveNews } from '../utils/get_news';
 import GeneralCategory from '../Components/GeneralCategory';
@@ -9,19 +9,27 @@ const Newsapp = () => {
     const [category, setCategory] = useState("general");
     const [newsData, setNewsData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [cache, setCache] = useState({});
+    const cacheRef = useRef({});
+
+    const CACHE_TIMEOUT = 15 * 60 * 1000; // 15 minutes in milliseconds
 
     const getData = async (category) => {
-        if (cache[category]) {
-            setNewsData(cache[category]);
+        const currentTime = Date.now();
+
+        // Check if category exists in cache and is within the timeout period
+        if (cacheRef.current[category] && currentTime - cacheRef.current[category].timestamp < CACHE_TIMEOUT) {
+            setNewsData(cacheRef.current[category].data);
             setIsLoading(false);
             return;
         }
 
+        // Fetch new data if cache is outdated or non-existent
         setIsLoading(true);
         const dt = await getLiveNews(category);
         setNewsData(dt);
-        setCache((prevCache) => ({ ...prevCache, [category]: dt }));
+
+        // Update cache with new data and current timestamp
+        cacheRef.current[category] = { data: dt, timestamp: currentTime };
         setIsLoading(false);
     };
 
@@ -36,12 +44,11 @@ const Newsapp = () => {
     return (
         <div>
             <div>
-                <p className='head'>All your News in single Feed</p>
+                <p className="head">All your News in a Single Feed</p>
             </div>
             <GeneralCategory onCategoriesChange={handleCategoryChange} />
             <div>
-                {newsData ? <Card data={newsData} isLoading={isLoading} /> : <Spinner />}
-
+                {isLoading ? <Spinner /> : <Card data={newsData} />}
             </div>
         </div>
     );
